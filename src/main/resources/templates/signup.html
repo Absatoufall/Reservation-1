@@ -5,40 +5,147 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inscription</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+
+   body {
+            background-color: #e4eaf0;
+        }
+    .weak {
+      color: red;
+    }
+    .medium {
+      color: orange;
+    }
+    .strong, .very-strong {
+      color: green;
+    }
+    .required-field-label::after {
+      content: " *";
+      color: red;
+    }
+  </style>
 </head>
 <body>
-<div data-th-replace="/fragments/navbar :: nav"></div>
+<div data-th-replace="/fragments/navSignUp :: nav"></div>
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <h2 class="text-center">Inscription</h2>
-      <form th:action="@{/signup}" method="post">
+      <form th:action="@{/signup}" th:object="${user}" method="post" onsubmit="return validateForm()">
         <div class="form-group">
-          <label for="username">Nom d'utilisateur</label>
-          <input type="text" class="form-control" id="username" name="username" required>
+          <label for="username" class="required-field-label">Username</label>
+          <input type="text" class="form-control" id="username" th:field="*{username}" required>
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" name="email" required>
+          <label for="email" class="required-field-label">Email</label>
+          <input type="email" class="form-control" id="email" th:field="*{email}" required>
         </div>
         <div class="form-group">
-          <label for="password">Mot de passe</label>
-          <input type="password" class="form-control" id="password" name="password" required>
+          <label for="adresse" class="required-field-label">Adresse</label>
+          <select class="form-control" id="adresse" th:field="*{adresse}" required>
+            <option value="">Sélectionner une ville</option>
+            <option value="Dakar">Dakar</option>
+            <option value="Saint-Louis">Saint-Louis</option>
+            <option value="Thiès">Thiès</option>
+            <option value="Ziguinchor">Ziguinchor</option>
+            <option value="Kaolack">Kaolack</option>
+            <option value="Tambacounda">Tambacounda</option>
+            <option value="Kolda">Kolda</option>
+            <option value="Diourbel">Diourbel</option>
+            <option value="Louga">Mbour</option>
+            <option value="Matam">Saly</option>
+            <option value="Fatick">Rufisque</option>
+            <option value="Kaffrine">Kaffrine</option>
+            <option value="Kédougou">Kédougou</option>
+            <option value="Sédhiou">Sédhiou</option>
+          </select>
         </div>
         <div class="form-group">
-          <label for="password">Confirmer Mot de Passe</label>
-          <input type="password" class="form-control" id="password1" name="password" required>
+          <label for="password" class="required-field-label">Mot de passe</label>
+          <input type="password" class="form-control" id="password" th:field="*{password}" required onkeyup="validatePassword()">
+          <small id="passwordHelpBlock" class="form-text"></small>
         </div>
-
+        <div class="form-group">
+          <label for="confirmPassword" class="required-field-label">Confirmer le mot de passe</label>
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required onkeyup="validatePassword()">
+          <small id="confirmPasswordHelpBlock" class="form-text"></small>
+          <small class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></small>
+        </div>
         <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+        <small class="form-text text-muted">Les champs marqués <span class="required-field-label"></span> sont obligatoires.</small>
       </form>
     </div>
   </div>
 </div>
+
 <div data-th-replace="/fragments/footer :: footer"></div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="/nav.js"></script>
+<script>
+  function validateForm() {
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("confirmPassword").value;
+
+    // Validate password complexity
+    var passwordValid = validatePasswordComplexity(password);
+    if (!passwordValid) {
+      return false;
+    }
+
+    // Validate password and confirm password match
+    if (password !== confirmPassword) {
+      document.getElementById("confirmPasswordHelpBlock").innerHTML = "Veuillez saisir le même mot de passe.";
+      return false;
+    } else {
+      document.getElementById("confirmPasswordHelpBlock").innerHTML = "";
+    }
+
+    return true;
+  }
+
+  function validatePassword() {
+    var password = document.getElementById("password").value;
+
+    // Check password strength
+    var passwordStrength = getPasswordStrength(password);
+    var passwordHelpBlock = document.getElementById("passwordHelpBlock");
+    if (passwordStrength === "weak") {
+      passwordHelpBlock.innerHTML = "Mot de passe faible";
+      passwordHelpBlock.className = "weak";
+    } else if (passwordStrength === "medium") {
+      passwordHelpBlock.innerHTML = "Mot de passe moyen";
+      passwordHelpBlock.className = "medium";
+    } else if (passwordStrength === "strong" || passwordStrength === "very-strong") {
+      passwordHelpBlock.innerHTML = "Mot de passe bon";
+      passwordHelpBlock.className = "strong";
+    } else {
+      passwordHelpBlock.innerHTML = "";
+    }
+  }
+
+  function validatePasswordComplexity(password) {
+    var regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+    if (!regex.test(password)) {
+      alert("Le mot de passe doit contenir au moins 8 caractères avec au moins une majuscule, une minuscule et un chiffre.");
+      return false;
+    }
+    return true;
+  }
+
+  function getPasswordStrength(password) {
+    if (password.length < 4) {
+      return "weak";
+    } else if (password.length < 8) {
+      return "medium";
+    } else if (password.length < 12) {
+      return "strong";
+    } else {
+      return "very-strong";
+    }
+  }
+</script>
 </body>
 </html>

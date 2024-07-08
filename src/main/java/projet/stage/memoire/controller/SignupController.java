@@ -1,32 +1,34 @@
 package projet.stage.memoire.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import projet.stage.memoire.model.User;
+import projet.stage.memoire.service.UserService;
 
 @Controller
 public class SignupController {
+    private final UserService userService;
+
+    @Autowired
+    public SignupController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/signup")
+    public String signupForm(Model model) {
+        model.addAttribute("user", new User());
+        return "signup"; // Nom de votre template Thymeleaf pour le formulaire d'inscription
+    }
+
+    @PostMapping("/signup")
+    public String signupSubmit(@ModelAttribute User user) {
+        userService.saveUser(user);
+        return "redirect:/login"; // Redirige vers la page de connexion
+    }
 
 
-
-        @GetMapping("/signup")
-        public String showRegistrationForm() {
-            return "signup"; // Retourne le nom de la vue Thymeleaf (register.html)
-        }
-
-
-
-//    @Autowired
-//    private com.example.demo.service.UserService userService;
-//
-//    @GetMapping("/signup")
-//    public String showRegistrationForm(Model model) {
-//        model.addAttribute("user", new User());
-//        return "signup";
-//    }
-
-//    @PostMapping("/signup")
-//    public String registerUser(@ModelAttribute User user) {
-//        userService.registerUser(user.getUsername(), user.getEmail(), user.getPassword(), "USER");
-//        return "redirect:/login";
-//    }
 }

@@ -7,16 +7,26 @@ import jakarta.persistence.Id;
 
 @Entity
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
     private String email;
+    private String adresse;
     private String password;
-    private String role;
 
+    private String confirmPassword;
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -41,6 +51,14 @@ public class User {
         this.email = email;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -48,13 +66,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-// getters et setters
 }
