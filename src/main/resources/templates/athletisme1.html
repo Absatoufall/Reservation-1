@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infrastructures Football - Reservation.com</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <style>
+
+   body {
+            background-color: #e4eaf0;
+        }
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            padding: 5px 15px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-secondary:hover {
+            background-color: #495057;
+            border-color: #495057;
+        }
+
+        .card-img-top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            object-fit: cover;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+<div data-th-replace="/fragments/nav1 :: nav"></div>
+<div class="container">
+  <h1 class="text-center mt-5 mb-4"></h1>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-1 mb-1">
+      <div class="card mb-4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Senegal_1_-_Cameroon_0_-_Stade_L%C3%A9opold_S%C3%A9dar_Senghor.jpg/390px-Senegal_1_-_Cameroon_0_-_Stade_L%C3%A9opold_S%C3%A9dar_Senghor.jpg" class="card-img-top"
+             alt="Stade Léopold Sédar Senghor">
+        <div class="card-body">
+          <h5 class="card-title">Stade Léopold Sedar Senghor</h5>
+          <div class="text-center">
+            <a href="" class="btn btn-primary mr-2">Réserver</a>
+            <a href="#" class="btn btn-secondary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-1 mb-1">
+      <div class="card mb-4">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipOV4OZq7SGZDWT50IXRhyRjHcLuTCYRJDp6yV0=s1360-w1360-h1020" class="card-img-top" alt="Stade Lat Dior">
+        <div class="card-body">
+          <h5 class="card-title">Stade Lat Dior</h5>
+          <div class="text-center">
+            <a href="" class="btn btn-primary mr-2">Réserver</a>
+            <a href="#" class="btn btn-secondary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ajoutez les autres infrastructures ici -->
+
+  </div>
+</div>
+<div  data-th-replace="/fragments/footer :: footer" ></div>
+<!-- Scripts JavaScript -->
+<script>
+        // JavaScript pour l'animation au survol des boutons
+        const buttons = document.querySelectorAll('.btn');
+
+        buttons.forEach(button => {
+            button.addEventListener('mouseover', function () {
+                this.style.backgroundColor = this.classList.contains('btn-primary') ? '#0056b3' : '#495057';
+                this.style.borderColor = this.style.backgroundColor;
+            });
+
+            button.addEventListener('mouseout', function () {
+                this.style.backgroundColor = this.classList.contains('btn-primary') ? '#007bff' : '#6c757d';
+                this.style.borderColor = this.style.backgroundColor;
+            });
+        });
+    </script>
+<!-- Scripts Bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-VpO8oubW9Fq7UJpZ7r4Vs15gVW/u/R0RDHourRvbYGpZ6V8pL7c3hca4Omv+bx1it" crossorigin="anonymous"></script>
+</body>
+
+</html>

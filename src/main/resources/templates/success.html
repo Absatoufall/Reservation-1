@@ -1,0 +1,181 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Succès</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+  <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85); /* Plus transparent */
+            padding: 30px; /* Marges réduites */
+            border-radius: 10px; /* Bordures plus fines */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre réduite */
+            text-align: center;
+            max-width: 500px; /* Largeur réduite */
+            width: 90%; /* Plus flexible */
+            animation: bounceIn 0.5s ease;
+        }
+
+        .container .icon {
+            font-size: 4em; /* Taille réduite */
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 2em; /* Taille réduite */
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1em; /* Taille réduite */
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            margin-top: 15px;
+        }
+
+        .button-container a {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px; /* Dimensions réduites */
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em; /* Taille réduite */
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .button-container a:hover {
+            background-color: #45a049;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .confetti {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background-color: #ff4081;
+            opacity: 0.7;
+            animation: confetti 4s ease-in-out infinite;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes confetti {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.8em; /* Taille réduite pour les petits écrans */
+            }
+
+            p {
+                font-size: 0.9em; /* Taille réduite pour les petits écrans */
+            }
+
+            .button-container a {
+                font-size: 0.9em; /* Taille réduite pour les petits écrans */
+                padding: 8px 16px; /* Dimensions réduites */
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container animate__animated animate__bounceIn">
+  <div class="icon"><i class="fas fa-check-circle"></i></div>
+  <h2>Succès !</h2>
+  <p>Votre infrastructure a été ajoutée avec succès.</p>
+  <div class="button-container">
+    <a href="/adminPage" class="btn btn-success">Retour à l'accueil</a>
+  </div>
+</div>
+<div class="confetti"></div>
+<script>
+        // Générer des confettis
+        function createConfettiPiece() {
+            const piece = document.createElement('div');
+            piece.classList.add('confetti-piece');
+            piece.style.left = Math.random() * 100 + 'vw';
+            piece.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            piece.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.querySelector('.confetti').appendChild(piece);
+
+            setTimeout(() => {
+                piece.remove();
+            }, 4000);
+        }
+
+        // Créer 50 confettis
+        for (let i = 0; i < 50; i++) {
+            createConfettiPiece();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réserver sur Créneaux</title>
+    <style>
+    /* Styles pour le tableau de réservation */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    #reservation-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #reservation-table th, #reservation-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #reservation-table th {
+      background-color: #f2f2f2;
+    }
+
+    .date {
+      font-size: 12px;
+    }
+
+    .navigation {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .navigation button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .navigation button:hover {
+      background-color: #0056b3;
+    }
+
+    .disabled {
+      background-color: #e0e0e0;
+      cursor: not-allowed;
+    }
+
+    /* Styles pour le bouton de réservation */
+    .reserve-button {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .reserve-button button {
+      padding: 15px 30px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .reserve-button button:hover {
+      background-color: #218838;
+    }
+
+    /* Styles pour l'alerte */
+    .alert {
+      position: relative;
+      padding: 15px;
+      background-color: #f44336;
+      color: white;
+      border-radius: 5px;
+      margin-top: 10px;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    }
+
+    .alert.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .alert-message {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .alert-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: white;
+      cursor: pointer;
+      transition: color 0.3s ease-out;
+    }
+
+    .alert-close:hover {
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+    <h2>Réservation sur Créneaux</h2>
+    <div class="table-container">
+        <table id="reservation-table">
+            <thead>
+            <tr id="header-row">
+                <th>Horaires</th>
+                <!-- Les jours et dates seront générés dynamiquement -->
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Les lignes du tableau seront générées dynamiquement -->
+            </tbody>
+        </table>
+    </div>
+    <div class="navigation">
+        <button id="previous-week">Semaine Précédente</button>
+        <button id="next-week">Semaine Suivante</button>
+    </div>
+    <div class="reserve-button">
+        <button href="/MesReservations" id="reserve-btn">Réserver</button>
+    </div>
+    <!-- Alertes pour la réservation -->
+    <div id="reserve-alert" class="alert">
+        <span class="alert-message">Veuillez sélectionner au moins un créneau à réserver.</span>
+        <span class="alert-close" onclick="closeAlert()">×</span>
+    </div>
+</div>
+
+<script>
+    const headerRow = document.getElementById('header-row');
+    const tableBody = document.querySelector('#reservation-table tbody');
+    const now = new Date(); // Date actuelle de la machine
+    let startDate = new Date('2024-07-01'); // Date de départ de la première semaine affichée
+    const checkedSlots = {}; // Objet pour stocker les états des cases cochées
+
+    // Fonction pour formater une date en format DD/MM/YYYY
+    function formatDate(date) {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    // Fonction pour générer une clé unique pour chaque créneau horaire
+    function generateSlotKey(date, time) {
+      return `${formatDate(date)}_${time}`;
+    }
+
+    // Fonction pour générer les jours de la semaine avec dates
+    function generateWeekDays(startDate) {
+      headerRow.innerHTML = '<th>Horaires</th>';
+      for (let i = 0; i < 7; i++) {
+        const day = new Date(startDate);
+        day.setDate(startDate.getDate() + i);
+        const dayName = day.toLocaleDateString('fr-FR', { weekday: 'long' });
+        const date = formatDate(day);
+        const th = document.createElement('th');
+        th.innerHTML = `${dayName.charAt(0).toUpperCase() + dayName.slice(1)}<br><span class="date">${date}</span>`;
+        headerRow.appendChild(th);
+
+        // Griser le jour si antérieur à aujourd'hui
+        if (day < now) {
+          th.classList.add('disabled');
+        }
+      }
+    }
+
+    // Fonction pour générer les créneaux horaires dynamiquement à partir de l'heure actuelle
+    function generateTimeSlots() {
+      tableBody.innerHTML = ''; // Réinitialiser le corps du tableau
+      const times = [];
+
+      // Générer des créneaux horaires à partir de l'heure actuelle jusqu'à la fin de la journée
+      const startHour = 9; // Commencer à 9h00
+      const endHour = 17; // Finir à 17h00
+      for (let hour = startHour; hour < endHour; hour++) {
+        const start = `${String(hour).padStart(2, '0')}:00`;
+        const end = `${String(hour + 1).padStart(2, '0')}:00`;
+        times.push(`${start} - ${end}`);
+      }
+
+      times.forEach(time => {
+        const row = document.createElement('tr');
+        const timeCell = document.createElement('td');
+        timeCell.textContent = time;
+        row.appendChild(timeCell);
+
+        const [startHourStr] = time.split(' - ')[0].split(':');
+        const startHourNum = parseInt(startHourStr, 10);
+
+        for (let i = 0; i < 7; i++) {
+          const day = new Date(startDate);
+          day.setDate(startDate.getDate() + i);
+          const cell = document.createElement('td');
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+
+          const slotKey = generateSlotKey(day, time);
+          checkbox.checked = checkedSlots[slotKey] || false; // Restaurer l'état de la case à cocher
+
+          checkbox.addEventListener('change', () => {
+            checkedSlots[slotKey] = checkbox.checked; // Sauvegarder l'état de la case à cocher
+          });
+
+          cell.appendChild(checkbox);
+
+          // Griser la cellule si antérieure à aujourd'hui et maintenant
+          const isPast = day < now || (day.toDateString() === now.toDateString() && startHourNum <= now.getHours());
+
+          if (isPast) {
+            checkbox.disabled = true;
+            cell.classList.add('disabled');
+          }
+
+          row.appendChild(cell);
+        }
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Fonction pour gérer la réservation
+    function handleReservation() {
+      const selectedSlots = [];
+      for (const slot in checkedSlots) {
+        if (checkedSlots[slot]) {
+          selectedSlots.push(slot);
+        }
+      }
+      if (selectedSlots.length === 0) {
+        showReservationAlert();
+        return;
+      }
+      // Vous pouvez ajouter ici la logique pour traiter les créneaux réservés
+      alert(`Créneaux réservés : ${selectedSlots.join(', ')}`);
+
+       // Récupérer la date et l'heure de chaque créneau réservé
+    const reservations = selectedSlots.map(slot => {
+        const [day, date, time] = slot.split('_');
+        return {
+            dateReservation: date,
+            heureReservation: time
+        };
+    });
+
+    fetch('/reserver', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservations),
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = '/mes-reservations';
+        } else {
+            console.error('Erreur lors de la réservation');
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+    });
+    }
+
+    // Fonction pour afficher une alerte de réservation
+    function showReservationAlert() {
+      const alertElement = document.getElementById('reserve-alert');
+      alertElement.classList.add('show');
+
+      // Cacher l'alerte après quelques secondes
+      setTimeout(() => {
+        alertElement.classList.remove('show');
+      }, 3000); // 3 secondes
+    }
+
+    // Fonction pour fermer l'alerte manuellement
+    function closeAlert() {
+      const alertElement = document.getElementById('reserve-alert');
+      alertElement.classList.remove('show');
+    }
+
+    // Appeler les fonctions pour générer les jours et les créneaux horaires
+    generateWeekDays(startDate);
+    generateTimeSlots();
+
+    // Gérer le changement de semaine avec les boutons de navigation
+    const previousWeekButton = document.getElementById('previous-week');
+    const nextWeekButton = document.getElementById('next-week');
+
+    // Écouteurs d'événements pour les boutons de navigation
+    previousWeekButton.addEventListener('click', () => {
+      startDate.setDate(startDate.getDate() - 7);
+      generateWeekDays(startDate);
+      generateTimeSlots();
+    });
+
+    nextWeekButton.addEventListener('click', () => {
+      startDate.setDate(startDate.getDate() + 7);
+      generateWeekDays(startDate);
+      generateTimeSlots();
+    });
+
+    // Écouteur d'événement pour le bouton de réservation
+    const reserveButton = document.getElementById('reserve-btn');
+    reserveButton.addEventListener('click', handleReservation);
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infrastructures par Domaine</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+        body {
+            background-color: #e4eaf0;
+        }
+        .domain-card {
+            transition: transform 0.2s;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .domain-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(29, 74, 242);
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card-text {
+            font-size: 1.2rem;
+        }
+        .domain-icon {
+            font-size: 2rem;
+            color: #5795d9;
+        }
+
+        @media (max-width: 768px) {
+            .domain-icon {
+                font-size: 3rem;
+            }
+            .card-title {
+                font-size: 1.1rem;
+            }
+            .card-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div data-th-replace="/fragments/navDomaine :: nav"></div>
+<h2 class="text-center mb-4"><div class="welcome-message" th:if="${username}">
+  <p th:text="'Welcome, ' + ${username} + ' !'"></p>
+</div></h2>
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- Football -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card domain-card h-100 text-center">
+        <div class="card-body">
+          <div class="domain-icon mb-3">⚽</div>
+          <h5 class="card-title">Football</h5>
+          <p class="card-text">Cliquez pour voir les structures de ce domaine.</p>
+          <a th:href="@{/football}" class="btn btn-primary">Voir les structures</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sports en Salle -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card domain-card h-100 text-center">
+        <div class="card-body">
+          <div class="domain-icon mb-3">🏀</div>
+          <h5 class="card-title">Sports en Salle</h5>
+          <p class="card-text">(Basketball, Handball, Volleyball)</p>
+          <a th:href="@{/SportEnSalle}" class="btn btn-primary">Voir les structures</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Athlétisme -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card domain-card h-100 text-center">
+        <div class="card-body">
+          <div class="domain-icon mb-3">🏃‍♂️</div>
+          <h5 class="card-title">Athlétisme</h5>
+          <p class="card-text">Cliquez pour voir les structures de ce domaine.</p>
+          <a th:href="@{/athletisme}" class="btn btn-primary">Voir les structures</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi-usage -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card domain-card h-100 text-center">
+        <div class="card-body">
+          <div class="domain-icon mb-3">🏟️</div>
+          <h5 class="card-title">Multi-usage</h5>
+          <p class="card-text">Cliquez pour voir les structures de ce domaine.</p>
+          <a th:href="@{/multiUsage}" class="btn btn-primary">Voir les structures</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Centres de Formation -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card domain-card h-100 text-center">
+        <div class="card-body">
+          <div class="domain-icon mb-3">🎓</div>
+          <h5 class="card-title">Centres de Formation</h5>
+          <p class="card-text">Cliquez pour voir les structures de ce domaine.</p>
+          <a th:href="@{/centreDeFormation}" class="btn btn-primary">Voir les structures</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div data-th-replace="/fragments/footer :: footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
