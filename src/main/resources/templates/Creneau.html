@@ -100,6 +100,7 @@
     .alert-message {
       margin: 0;
       font-size: 16px;
+
     }
 
     .alert-close {
@@ -114,9 +115,65 @@
     .alert-close:hover {
       color: #ccc;
     }
+     body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+            background: url('https://static.vecteezy.com/system/resources/previews/000/371/535/original/many-sport-equipments-on-the-floor-vector.jpg') no-repeat center center fixed; /* Image de fond */
+            background-size: cover;
+        }
+        .navbar {
+            background-color: rgba(2, 58, 64, 0.8) !important; /* Couleur de fond transparente du navbar */
+            box-shadow: 0 8 px 8px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            color: #f8f9fa; /* Couleur du texte du brand */
+            font-size: 1.5rem;
+        }
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-nav .nav-link {
+            color: #f8f9fa !important; /* Couleur du texte des liens */
+            transition: color 0.3s ease;
+        }
+
+
+        .footer {
+            background-color: rgba(15, 58, 64, 0.8); /* Couleur de fond transparente du footer */
+            color: #f8f9fa;
+            text-align: center;
+            padding: 1rem 0;
+            position: absolute;
+            bottom: fixed;
+            width: 100%;
+            transition: height 0.3s ease;
+            min-height: 100px; /* Hauteur minimale du footer */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer-content a {
+            color: #f8f9fa;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-content a:hover {
+            color: black;
+        }
   </style>
 </head>
 <body>
+
 <div class="container">
     <h2>Réservation sur Créneaux</h2>
     <div class="table-container">
@@ -133,8 +190,8 @@
         </table>
     </div>
     <div class="navigation">
-        <button id="previous-week">Semaine Précédente</button>
-        <button id="next-week">Semaine Suivante</button>
+        <button class="btn1 btn-outline-success " id="previous-week">Semaine Précédente</button>
+        <button class="btn btn-outline-success " id="next-week">Semaine Suivante</button>
     </div>
     <div class="reserve-button">
         <button href="/MesReservations" id="reserve-btn">Réserver</button>
@@ -145,6 +202,13 @@
         <span class="alert-close" onclick="closeAlert()">×</span>
     </div>
 </div>
+<footer class="footer">
+    <div class="footer-content">
+        <a href="#">Mentions Légales</a>
+        <a href="#">Politique de Confidentialité</a>
+        <a href="#">Contact</a>
+    </div>
+</footer>
 
 <script>
     const headerRow = document.getElementById('header-row');

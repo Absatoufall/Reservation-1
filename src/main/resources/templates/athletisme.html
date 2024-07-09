@@ -5,14 +5,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infrastructures Football - Reservation.com</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-
-     body {
-            background-color: #e4eaf0;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+            background: url('https://static.vecteezy.com/system/resources/previews/000/371/535/original/many-sport-equipments-on-the-floor-vector.jpg') no-repeat center center fixed; /* Image de fond */
+            background-size: cover;
         }
+
+        .navbar {
+            background-color: rgba(2, 58, 64, 0.8) !important; /* Couleur de fond transparente du navbar */
+            box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: #f8f9fa; /* Couleur du texte du brand */
+            font-size: 1.5rem;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #f8f9fa; /* Couleur de l'icône du toggle */
+        }
+
+        .navbar-nav .nav-link {
+            color: #f8f9fa !important; /* Couleur du texte des liens */
+            transition: color 0.3s ease;
+        }
+
+        .jumbotron {
+            background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .jumbotron h1 {
+            color: #343a40; /* Couleur du titre principal */
+            font-weight: bold;
+            font-size: 3rem;
+        }
+
+        .lead {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #6c757d;
+        }
+
+        .btn-success {
+            background-color: success;
+            border-color: success;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-success:hover {
+            background-color: dark;
+            border-color: success;
+        }
+
         .card {
+            margin-bottom: 30px;
+        }
+
+        .card-img-top {
+            height: 15  0px;
+            object-fit: cover;
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-text {
+            color: #6c757d;
+        }
+
+        .btn-card {
+            margin-top: 1rem;
+        }
+
+        .footer {
+            background-color: rgba(15, 58, 64, 0.8); /* Couleur de fond transparente du footer */
+            color: #f8f9fa;
+            text-align: center;
+            padding: 3rem 0;
+            position: absolute;
+            bottom: fixed;
+            width: 100%;
+            transition: height 0.3s ease;
+            min-height: 100px; /* Hauteur minimale du footer */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-content a {
+            color: #f8f9fa;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-content a:hover {
+            color: black;
+        }
+
+         .card {
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -24,106 +140,142 @@
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .btn {
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            padding: 5px 15px;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-            border-color: #6c757d;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-
-        .btn-secondary:hover {
-            background-color: #495057;
-            border-color: #495057;
-        }
-
-        .card-img-top {
+ .card-img-top {
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
             object-fit: cover;
-            height: 150px;
+            height: 200px;
         }
+.card-header1 {
+    background-color: rgba(0, 0, 0, 0.3); /* Couleur d'en-tête noire semi-transparente */
+    color: #ffffff; /* Texte en blanc */
+    padding: 12px;
+    border-top-left-radius: 8px; /* Coins arrondis pour le haut */
+    border-top-right-radius: 8px;
+}
+
+.card-header1 h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.card-content1 {
+    padding: 20px;
+}
+
+.card-content1 p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.7); /* Texte plus foncé */
+}
+
     </style>
 </head>
 
 <body>
-<div data-th-replace="/fragments/navAvecLogin :: nav"></div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                 class="bi bi-journal-check" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0" />
+                <path
+                        d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
+                <path
+                        d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
+            </svg>
+            Booking
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarButtons"
+                aria-controls="navbarButtons" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarButtons">
+            <ul class="navbar-nav">
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link btn btn-outline-dark" href="/domaines-public">Réservation</a>-->
+                <!--                </li>-->
+                <li class="nav-item ml-2">
+                    <a href="#" onclick="history.back();" class="nav-link btn btn-outline-dark">Retour</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Contenu principal -->
 <div class="container">
-    <h1 class="text-center mt-5 mb-4"></h1>
-
-    <div class="row">
-        <div class="col-lg-4 col-md-1 mb-1">
-            <div class="card mb-4">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Senegal_1_-_Cameroon_0_-_Stade_L%C3%A9opold_S%C3%A9dar_Senghor.jpg/390px-Senegal_1_-_Cameroon_0_-_Stade_L%C3%A9opold_S%C3%A9dar_Senghor.jpg" class="card-img-top"
-                     alt="Stade Léopold Sédar Senghor">
-                <div class="card-body">
-                    <h5 class="card-title">Stade Léopold Sedar Senghor</h5>
-                    <div class="text-center">
-                        <a href="" class="btn btn-primary mr-2">Réserver</a>
-                        <a href="#" class="btn btn-secondary">En savoir plus</a>
+    <div class="jumbotron">
+        <h1 class="display-4">Infrastructures d'Athletisme</h1>
+        <p class="lead">Découvrez nos infrastructures dédiées aux athletes.</p>
+        <hr class="my-4">
+        <div class="row">
+            <!-- Carte pour Stade Léopold Sédar Senghor -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card mb-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Senegal_1_-_Cameroon_0_-_Stade_L%C3%A9opold_S%C3%A9dar_Senghor.jpg/390px-Senegal_1_-_Cameroon_0_-_Stade_L%C3%A9opold_S%C3%A9dar_Senghor.jpg"
+                         class="card-img-top" alt="Stade Léopold Sédar Senghor">
+                    <div class="card-body">
+                        <h5 class="card-title">Stade Léopold Sédar Senghor</h5>
+                        <p class="card-text">Stade national du Sénégal, situé à Dakar.</p>
+                        <div class="text-center">
+                            <a href="/Creneau" class="btn btn-success btn-card mr-2">Réserver</a>
+                            <a href="/ensavoirplus" class="btn btn-outline-dark btn-card">En savoir plus</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-lg-3 col-md-1 mb-1">
-            <div class="card mb-4">
-                <img src="https://lh3.googleusercontent.com/p/AF1QipOV4OZq7SGZDWT50IXRhyRjHcLuTCYRJDp6yV0=s1360-w1360-h1020" class="card-img-top" alt="Stade Lat Dior">
-                <div class="card-body">
-                    <h5 class="card-title">Stade Lat Dior</h5>
-                    <div class="text-center">
-                        <a href="" class="btn btn-primary mr-2">Réserver</a>
-                        <a href="#" class="btn btn-secondary">En savoir plus</a>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card mb-4">
+                    <img src="https://lh3.googleusercontent.com/p/AF1QipOV4OZq7SGZDWT50IXRhyRjHcLuTCYRJDp6yV0=s1360-w1360-h1020"
+                         class="card-img-top" alt="Stade Lat Dior ">
+                    <div class="card-body">
+                        <h5 class="card-title">Stade Lat Dior</h5>
+                        <p class="card-text">Stade du Sénégal, situé à Thies.</p>
+                        <div class="text-center">
+                            <a href="/Creneau" class="btn btn-success btn-card mr-2">Réserver</a>
+                            <a href="/ensavoirplus1" class="btn btn-outline-dark btn-card">En savoir plus</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
+
+            <div class="reservation-card">
+                <div class="card-header1">
+                    <h2>Réserver à proximité</h2>
+                </div>
+                <div class="card-content1">
+                    <p>Trouvez les meilleures infrastructures sportives près de chez vous.</p>
+                    <a href="#" class="btn-my btn-success">Voir les détails</a>
+                </div>
+            </div>
+
+            <!-- Ajoutez ici d'autres cartes pour d'autres stades -->
         </div>
-
-        <!-- Ajoutez les autres infrastructures ici -->
-
     </div>
 </div>
-<div  data-th-replace="/fragments/footer :: footer" ></div>
-<!-- Scripts JavaScript -->
-<script>
-        // JavaScript pour l'animation au survol des boutons
-        const buttons = document.querySelectorAll('.btn');
 
-        buttons.forEach(button => {
-            button.addEventListener('mouseover', function () {
-                this.style.backgroundColor = this.classList.contains('btn-primary') ? '#0056b3' : '#495057';
-                this.style.borderColor = this.style.backgroundColor;
-            });
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <a href="#">Mentions Légales</a>
+        <a href="#">Politique de Confidentialité</a>
+        <a href="#">Contact</a>
+    </div>
+</footer>
 
-            button.addEventListener('mouseout', function () {
-                this.style.backgroundColor = this.classList.contains('btn-primary') ? '#007bff' : '#6c757d';
-                this.style.borderColor = this.style.backgroundColor;
-            });
-        });
-    </script>
-<!-- Scripts Bootstrap -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
-        integrity="sha384-VpO8oubW9Fq7UJpZ7r4Vs15gVW/u/R0RDHourRvbYGpZ6V8pL7c3hca4Omv+bx1it" crossorigin="anonymous"></script>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Ajoutez ici d'autres fichiers JavaScript personnalisés si nécessaire -->
 </body>
 
 </html>
