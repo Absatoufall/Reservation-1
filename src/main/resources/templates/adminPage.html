@@ -7,7 +7,7 @@
     <style>
         /* Style pour le navbar */
         .navbar {
-            background-color: rgba(51, 51, 51, 0.9); /* Couleur avec transparence */
+            background-color: rgba(2, 58, 64, 0.8) !important; /* Couleur avec transparence */
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -60,34 +60,38 @@
             position: fixed;
             top: 0;
             left: -200px;
-            background-color: #111;
+            background-color: rgba(2, 58, 64, 0.8) !important;
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
+            color : black;
         }
 
         .sidebar a {
             padding: 10px 15px;
             text-decoration: none;
             font-size: 18px;
-            color: #818181;
+           background-color: rgba(2, 58, 64, 0.8) !important;
             display: block;
             transition: 0.3s;
+            color: black;
         }
 
         .sidebar a:hover {
-            color: #f1f1f1;
+            background-color: rgba(2, 58, 64, 0.8) !important;
 
             margin-top: 5px;
+
         }
 
         .open-sidebar {
             left: 0;
+
         }
 
         /* Titre "Admin" */
         .admin-title {
-            color: #f2f2f2;
+            color: black;
             font-size: 24px;
             text-align: center;
             padding: 20px 0;
@@ -101,8 +105,8 @@
         }
 
         .dropdown .dropdown-btn {
-            background-color: #111;
-            color: #818181;
+            background-color: rgba(2, 58, 64, 0.8) !important;
+          color: black;
             border: none;
             width: 100%;
             text-align: left;
@@ -112,8 +116,9 @@
         }
 
         .dropdown .dropdown-btn:hover {
-            color: #f1f1f1;
+            background-color: rgba(2, 58, 64, 0.8) !important;
             font-size: 20px;
+
 
         }
 
@@ -135,7 +140,7 @@
 
         .dropdown-content a:hover {
             background-color: #575757;
-            color: #f1f1f1;
+            background-color: rgba(2, 58, 64, 0.8) !important;
             border-radius: 80px;
               margin-right: 40px;
         }
@@ -188,8 +193,8 @@
             }
         }
 .sidebar-toggle {
-    background-color: #333;         /* Couleur de fond */
-    color: #f2f2f2;                 /* Couleur du texte */
+    background-color: rgba(2, 58, 64, 0.8) !important;        /* Couleur de fond */
+    color: black;                 /* Couleur du texte */
     border: none;                   /* Pas de bordure */
     padding: 10px 20px;             /* Espacement interne */
     cursor: pointer;                /* Curseur en forme de main */
@@ -204,7 +209,7 @@
 
 .sidebar-toggle:hover {
     background-color: #555;         /* Changer la couleur de fond au survol */
-    color: #fff;                    /* Changer la couleur du texte au survol */
+   background-color: rgba(2, 58, 64, 0.8) !important;                  /* Changer la couleur du texte au survol */
     transform: scale(1.05);         /* Agrandir légèrement au survol */
 }
 
@@ -213,6 +218,34 @@
     transform: scale(0.95);         /* Réduire légèrement lors du clic */
 }
 
+ .footer {
+            background-color: rgba(15, 58, 64, 0.8); /* Couleur de fond transparente du footer */
+            color: #f8f9fa;
+            text-align: center;
+            padding: 3rem 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            transition: height 0.3s ease;
+            min-height: 10px; /* Hauteur minimale du footer */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer-content a {
+            color: #f8f9fa;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-content a:hover {
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -249,7 +282,7 @@
         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
     </svg>Admin</div>
 <!--    <a href="#">Bouton 1</a>-->
-    <a href="#">Reservations</a>
+    <a href="/reponseReservation">Reservations</a>
 
         <!-- Autres éléments de la barre latérale -->
         <li class="list-group-item">
@@ -279,7 +312,13 @@
 
 </div>
 
-
+<footer class="footer">
+    <div class="footer-content">
+        <a href="#">Mentions Légales</a>
+        <a href="#">Politique de Confidentialité</a>
+        <a href="#">Contact</a>
+    </div>
+</footer>
 <script>
     // Fonction pour ouvrir/fermer le sidebar
     function toggleSidebar() {

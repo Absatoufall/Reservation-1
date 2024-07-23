@@ -11,5 +11,10 @@ public class ReservationController {
         return "Creneau"; // Retourne le nom du template Thymeleaf sans extension
     }
 
+@GetMapping("/reponseReservation")
+    public String reponseReservation() {
+        return "reponseReservation"; // Retourne le nom du template Thymeleaf sans extension
+    }
+
 
 }

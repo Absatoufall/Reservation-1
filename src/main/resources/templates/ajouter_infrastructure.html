@@ -7,7 +7,7 @@
     <style>
         /* Style pour le navbar */
         .navbar {
-            background-color: rgba(51, 51, 51, 0.9); /* Couleur avec transparence */
+            background-color: rgba(2, 58, 64, 0.8) !important; /* Couleur avec transparence */
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -41,6 +41,7 @@
 
         .menu-items {
             margin-left: auto; /* Aligner à droite */
+            background-color: rgba(2, 58, 64, 0.8) !important;
         }
 
         .menu-items a {
@@ -49,45 +50,50 @@
             align-items: center;
         }
 
+
         .menu-items a .icon {
             margin-right: 800px;
+
         }
 
         /* Style pour le sidebar */
-        .sidebar {
+         .sidebar {
             height: 100%;
             width: 200px;
             position: fixed;
             top: 0;
             left: -200px;
-            background-color: #111;
+            background-color: rgba(2, 58, 64, 0.8) !important;
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
+            color : black;
         }
 
         .sidebar a {
             padding: 10px 15px;
             text-decoration: none;
             font-size: 18px;
-            color: #818181;
+           background-color: rgba(2, 58, 64, 0.8) !important;
             display: block;
             transition: 0.3s;
+            color: black;
         }
 
         .sidebar a:hover {
-            color: #f1f1f1;
+            background-color: rgba(2, 58, 64, 0.8) !important;
 
             margin-top: 5px;
+
         }
 
         .open-sidebar {
             left: 0;
-        }
 
+        }
         /* Titre "Admin" */
-        .admin-title {
-            color: #f2f2f2;
+       .admin-title {
+            color: black;
             font-size: 24px;
             text-align: center;
             padding: 20px 0;
@@ -95,13 +101,19 @@
             border-bottom: 1px solid #818181;
         }
 
+        .list-group-item .addInfrastructureLink{
+        background-color: rgba(2, 58, 64, 0.8) !important;
+
+        }
+
         /* Style pour le menu déroulant */
         .dropdown {
             position: relative;
+
         }
 
         .dropdown .dropdown-btn {
-            background-color: #111;
+background-color: rgba(2, 58, 64, 0.8) !important;
             color: #818181;
             border: none;
             width: 100%;
@@ -119,7 +131,7 @@
 
         .dropdown-content {
             display: none;
-            background-color:;
+background-color: rgba(2, 58, 64, 0.8) !important;
             color: #f1f1f1;
             width: calc(100% - 20px); /* Assurer que la largeur ne dépasse pas */
             padding-left: 20px; /* Décaler un peu à droite */
@@ -188,8 +200,8 @@
             }
         }
 .sidebar-toggle {
-    background-color: #333;         /* Couleur de fond */
-    color: #f2f2f2;                 /* Couleur du texte */
+    background-color: rgba(2, 58, 64, 0.8) !important;        /* Couleur de fond */
+    color: black;                 /* Couleur du texte */
     border: none;                   /* Pas de bordure */
     padding: 10px 20px;             /* Espacement interne */
     cursor: pointer;                /* Curseur en forme de main */
@@ -204,7 +216,7 @@
 
 .sidebar-toggle:hover {
     background-color: #555;         /* Changer la couleur de fond au survol */
-    color: #fff;                    /* Changer la couleur du texte au survol */
+   background-color: rgba(2, 58, 64, 0.8) !important;                  /* Changer la couleur du texte au survol */
     transform: scale(1.05);         /* Agrandir légèrement au survol */
 }
 
@@ -224,8 +236,7 @@
     padding: 12px 25px;
     font-size: 16px;
     color: #fff; /* Couleur du texte en blanc */
-    background-color: #000; /* Couleur de fond en noir */
-    border: 2px solid transparent;
+background-color: rgba(2, 58, 64, 0.8) !important;    border: 2px solid transparent;
     border-radius: 50px; /* Coins arrondis */
     text-decoration: none;
     transition: all 0.3s ease; /* Transition fluide pour les changements */
@@ -244,6 +255,50 @@
     background-color: #333; /* Couleur encore plus claire lors du clic */
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
     transform: translateY(0);
+}
+/* Style pour le conteneur du formulaire */
+.form-container {
+    background-color: rgba(2, 58, 64, 0.6) !important; /* Couleur de fond plus transparente */
+    border-radius: 8px; /* Coins arrondis pour le conteneur */
+    padding: 20px; /* Espacement intérieur du formulaire */
+    color: #f2f2f2; /* Couleur du texte dans le formulaire */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre autour du formulaire */
+}
+
+/* Style pour les labels du formulaire */
+.form-container label {
+    color: #f2f2f2; /* Couleur des labels du formulaire */
+    font-weight: bold;
+}
+
+/* Style pour les champs du formulaire */
+.form-container .form-control {
+    background-color: rgba(255, 255, 255, 0.8); /* Couleur de fond des champs de formulaire */
+    color: #333; /* Couleur du texte dans les champs */
+    border: 1px solid #ddd; /* Bordure des champs */
+    border-radius: 4px; /* Coins arrondis des champs */
+    padding: 9px; /* Espacement intérieur des champs */
+    margin-bottom: 15px; /* Espacement entre les champs */
+}
+
+/* Style pour les champs du formulaire au focus */
+.form-container .form-control:focus {
+    border-color: #007bff; /* Couleur de bordure des champs au focus */
+    outline: none; /* Supprimer le contour par défaut du focus */
+}
+
+/* Style pour les boutons du formulaire */
+.form-container button {
+    background-color: green; /* Couleur de fond des boutons */
+    color: #fff; /* Couleur du texte des boutons */
+    border: none;
+    padding: 10px 20px; /* Espacement intérieur du bouton */
+    border-radius: 4px; /* Coins arrondis du bouton */
+    cursor: pointer; /* Curseur en forme de main au survol */
+}
+
+.form-container button:hover {
+    background-color: #0056b3; /* Couleur de fond du bouton au survol */
 }
 
     </style>
